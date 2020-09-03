@@ -27,7 +27,14 @@ const kittyPrompts = {
 
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let orangeKitties = kitties.filter(kitty => {
+      return kitty.color === 'orange';
+    });
+    let namesOrangeKitties = orangeKitties.map(kitty => {
+      return kitty.name;
+    });
+
+    const result = namesOrangeKitties;
     return result;
 
     // Annotation:
@@ -36,14 +43,19 @@ const kittyPrompts = {
 
   sortByAge() {
     // Sort the kitties by their age
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let kittiesByAge = kitties.sort((a, b) => {
+      return b.age - a.age;
+    });
+    const result = kittiesByAge;
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
   },
 
+
+  // use map to add 2 to the age property of each element.
+  // use sort to organize elements in descending order.
   growUp() {
     // Return an array of kitties who have all grown up by 2 years e.g.
     // [{
@@ -57,8 +69,19 @@ const kittyPrompts = {
     //   color: 'orange'
     // },
     // ...etc]
+    // for (let i = 0; i < kitties.length; i++) {
+    //   kitties[i].age + 2;
+    // };
+    this.sortByAge();
+    let growUp = kitties.map(kitty => {
+      return {
+        name: kitty.name,
+        age: kitty.age + 2,
+        color: kitty.color
+      };
+    });
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = growUp;
     return result;
   }
 };
@@ -89,12 +112,15 @@ const clubPrompts = {
     //   Pam: ['Drama', 'Art', 'Chess'],
     //   ...etc
     // }
+    let clubsByMember = clubs.reduce(() => {
 
+    }, {})
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We will want to create an object so we should use reduce.
+    // We will reduce the members arrays to a single array
   }
 };
 
