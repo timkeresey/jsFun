@@ -33,7 +33,6 @@ const kittyPrompts = {
     let namesOrangeKitties = orangeKitties.map(kitty => {
       return kitty.name;
     });
-
     const result = namesOrangeKitties;
     return result;
 
@@ -112,15 +111,12 @@ const clubPrompts = {
     //   Pam: ['Drama', 'Art', 'Chess'],
     //   ...etc
     // }
-    let clubsByMember = clubs.reduce(() => {
 
-    }, {})
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
 
     // Annotation:
-    // We will want to create an object so we should use reduce.
-    // We will reduce the members arrays to a single array
+    //create the object through reduce.
   }
 };
 
@@ -151,8 +147,13 @@ const modPrompts = {
     //   { mod: 3, studentsPerInstructor: 10 },
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let modInstructors = mods.map(modul => {
+      return {
+        mod: modul.mod,
+        studentsPerInstructor: modul.students / modul.instructors
+      };
+    });
+    const result = modInstructors;
     return result;
 
     // Annotation:
@@ -186,8 +187,14 @@ const cakePrompts = {
     //    { flavor: 'yellow', inStock: 14 },
     //    ..etc
     // ]
+    let stocks = cakes.map(cake => {
+      return {
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+      };
+    });
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stocks;
     return result;
 
     // Annotation:
@@ -214,8 +221,10 @@ const cakePrompts = {
     // },
     // ..etc
     // ]
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let cakesInStock = cakes.filter(cake => {
+      return cake.inStock > 0;
+    });
+    const result = cakesInStock;
     return result;
 
     // Annotation:
@@ -225,8 +234,10 @@ const cakePrompts = {
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let totalCakes = cakes.reduce((total, cake) => {
+      return total += cake.inStock;
+    }, 0);
+    const result = totalCakes;
     return result;
 
     // Annotation:
@@ -237,8 +248,11 @@ const cakePrompts = {
     // Return an array of all unique toppings (no duplicates) needed to bake
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let tops = cakes.map(cake => {
+      return cake.toppings;
+    }).flat();
+    let uniqueTops = [...new Set(tops)];
+    const result = uniqueTops;
     return result;
 
     // Annotation:
