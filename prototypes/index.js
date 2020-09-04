@@ -111,6 +111,12 @@ const clubPrompts = {
     //   Pam: ['Drama', 'Art', 'Chess'],
     //   ...etc
     // }
+    
+    let clubsOfMembers = clubs.reduce((acc, obj) => {
+      let {club, members} = obj;
+      return {...acc, [members]: [...(acc[members] || []), club]};
+    }, {});
+console.log(clubsOfMembers);
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
