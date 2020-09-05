@@ -111,18 +111,27 @@ const clubPrompts = {
     //   Pam: ['Drama', 'Art', 'Chess'],
     //   ...etc
     // }
-    
-    let clubsOfMembers = clubs.reduce((acc, obj) => {
-      let {club, members} = obj;
-      return {...acc, [members]: [...(acc[members] || []), club]};
-    }, {});
-console.log(clubsOfMembers);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let clubsOfMembers = clubs.reduce((acc, obj) => {
+      obj.members.forEach(name => {
+        if(!acc[name]) {
+          acc[name] = [obj.club];
+        } else {
+          acc[name].push(obj.club);
+        }
+      });
+      return acc;
+    }, {});
+
+
+    const result = clubsOfMembers;
     return result;
 
     // Annotation:
-    //create the object through reduce.
+    //input is an array of objects with 2 properties, club(string) and members(array).
+    //output: an object with 10 properties which are names. values are arrays.
+    // method to reach for will be reduce (starting point wilp be an array) because I want to return a single object. will be iterating over clubs.
+    //
   }
 };
 
