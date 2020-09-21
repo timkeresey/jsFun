@@ -284,12 +284,25 @@ const cakePrompts = {
     //    'berries': 2,
     //    ...etc
     // }
+    let everyTopping = cakes.map(cake => {
+      return cake.toppings;
+    }).flat();
+    let toppingObj = everyTopping.reduce((total, topping) => {
+      if (topping in total) {
+        total[topping]++;
+      } else {
+        total[topping] = 1;
+      }
+      return total;
+    }, {});
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = toppingObj;
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // taking in: all cakes.toppings. combining the values into one array.
+    // output: 1 object with toppings and number of occurences of them as ke value pair.
+    // Use filter and flat to get array of toppings, then reduce to an object.
   }
 };
 
@@ -319,8 +332,11 @@ const classPrompts = {
     //   { roomLetter: 'E', program: 'FE', capacity: 22 },
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
+    let frontEnd = classrooms.filter(classroom => {
+      return classroom.program === 'FE';
+    });
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = frontEnd;
     return result;
 
     // Annotation:
@@ -339,7 +355,7 @@ const classPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    //
   },
 
   sortByCapacity() {
@@ -740,7 +756,21 @@ const astronomyPrompts = {
     //     color: 'red' }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+
+    // returning: a shorter version of the stars array.
+    // stars.name needs to match with constellations[x].stars. if statement that would return only stars objs that meet that condition.
+    // first object.keys(constellations) to make an array of the keys. then it over that array and for each key access the object at that key, then return the stars. Prob it through stars in if statement.
+    let includedStars = [];
+    let signs = Object.keys(constellations);
+    signs.forEach(sign => {
+      let correctStars = stars.filter(star => {
+        return constellations[sign].stars.includes(star.name);
+      });
+      includedStars.push(correctStars);
+    });
+    // console.log(includedStars);
+
+    const result = includedStars.flat();
     return result;
 
     // Annotation:
@@ -758,7 +788,21 @@ const astronomyPrompts = {
     //   red: [{obj}]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    //returning an object so I'll need to reduce with an initial value of an object.
+    // keys of the obj will be stars[i].color.
+    // values of obj will be stars[i] in an array.
+
+    let colorsOfStars = stars.reduce((obj, star) =>{
+      if(!obj[star.color]) {
+        obj[star.color] = [];
+      }
+      return obj;
+    }, {});
+    stars.forEach(star => {
+      colorsOfStars[star.color].push(star);
+    });
+
+    const result = colorsOfStars;
     return result;
 
     // Annotation:
@@ -779,8 +823,12 @@ const astronomyPrompts = {
     //    "Orion",
     //    "The Little Dipper" ]
 
+//returning an array of strings of constellations.
+    let starConstellation = stars.map(star => {
+      return star.constellation;
+    });
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = starConstellation;
     return result;
 
     // Annotation:

@@ -63,7 +63,7 @@ describe("PROTOTYPES", () => {
       }])
     })
   }), describe("Club Prompts", () => {
-    it.only("membersBelongingToClubs", () => {
+    it("membersBelongingToClubs", () => {
       const e = clubPrompts.membersBelongingToClubs({
         Louisa: ["Drama", "Art"],
         Pam: ["Drama", "Chess", "Newspaper"],
@@ -527,7 +527,7 @@ describe("PROTOTYPES", () => {
           color: "red"
         }]
       })
-    }), it("constellationsStarsExistIn", () => {
+    }), it.only("constellationsStarsExistIn", () => {
       const e = astronomyPrompts.constellationsStarsExistIn();
       expect(e).to.deep.equal(["Canis Major", "Carina", "Boötes", "Auriga", "Orion", "Lyra", "Canis Minor", "The Plow", "Orion", "The Little Dipper"])
     })
